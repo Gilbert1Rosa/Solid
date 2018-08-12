@@ -1,0 +1,17 @@
+[
+    {
+        "class": "solid.model.Arma",
+        "id": 1,
+        "nombre": "AK-47",
+        "alcance": 1.5,
+        "perjuicio": 100,
+        "destructible": false
+    },
+    {
+        "class": "solid.model.Medicina",
+        "id": 2,
+        "nombre": "Pildoras",
+        "curacion": 50,
+        "destructible": true
+    }
+]
