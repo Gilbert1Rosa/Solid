@@ -1,5 +1,7 @@
 package solid.util;
 
+import solid.util.interfaz.ContentManager;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -9,10 +11,10 @@ import solid.dao.impl.ItemLoader;
 
 public class ItemFactory {
 
-    private ResourceManager man;
+    private ContentManager man;
     private ItemLoader loader;
 
-    public ItemFactory(ResourceManager man) throws Exception {
+    public ItemFactory(ContentManager man) throws Exception {
         this.man = man;
         this.loader = new ItemLoader(man.getContent());
     }
