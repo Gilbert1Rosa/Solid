@@ -1,5 +1,6 @@
 package solid.util;
 
+import solid.exception.SolidException;
 import solid.util.interfaz.ContentManager;
 
 import com.google.gson.Gson;
@@ -19,10 +20,23 @@ public class ItemFactory {
         this.loader = new ItemLoader(man.getContent());
     }
 
-    public Item get(String id) throws Exception {
-        JsonElement rawEl = loader.getObject(id);
-        JsonObject rawObj = rawEl.getAsJsonObject();
-        Class clase = Class.forName(rawObj.get("class").getAsString());
-        return (Item)(new Gson().fromJson(rawEl, clase));
+    public Item create(String id) throws SolidException {
+        JsonElement rawEl;
+        JsonObject rawObj;
+        Item item;
+        try {
+            rawEl = loader.getObject(id);
+            rawObj = rawEl.getAsJsonObject();
+            Class clase = Class.forName(rawObj.get("class").getAsString());
+            item = (Item)(new Gson().fromJson(rawEl, clase));
+        } catch(NullPointerException npe) {
+            if (loader == null) {
+                throw new SolidException("Cargador de items nulo", 1);
+            }
+            throw new SolidException("Objeto nulo al crear item", 3);
+        } catch (Exception e) {
+            throw new SolidException("Error al crear item", 4);
+        }
+        return item;
     }
 }

@@ -13,11 +13,11 @@ public class SolidMain {
         try {
             ResourceManager man = new ResourceManager("/Items.json");
             ItemFactory factory = new ItemFactory(man);
-            Item item = factory.get("1");
+            Item item = factory.create("1");
             Arma arma = (Arma) item;
             arma.disparar(6.0f, 5.0f);
         } catch(Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }
